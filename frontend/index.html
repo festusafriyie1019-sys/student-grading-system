@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Grading System</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">📚 Student Grading System</div>
+    <nav>
+      <button class="navbtn active" data-view="dashboard">Dashboard</button>
+      <button class="navbtn" data-view="students">Students</button>
+      <button class="navbtn" data-view="courses">Courses</button>
+      <button class="navbtn" data-view="grades">Grades</button>
+      <button class="navbtn" data-view="report">Reports</button>
+    </nav>
+    <div id="status" class="status">Connecting…</div>
+  </header>
+
+  <main class="container">
+    <!-- Dashboard -->
+    <section id="view-dashboard" class="view">
+      <h1>Dashboard</h1>
+      <div class="stats">
+        <div class="stat"><span id="st-students">0</span><small>Students</small></div>
+        <div class="stat"><span id="st-courses">0</span><small>Courses</small></div>
+        <div class="stat"><span id="st-grades">0</span><small>Grade Entries</small></div>
+      </div>
+      <h2>Quick Actions</h2>
+      <div class="actions">
+        <button onclick="showView('students'); openStudentModal()">+ Add Student</button>
+        <button onclick="showView('courses'); openCourseModal()">+ Add Course</button>
+        <button onclick="showView('grades'); openGradeModal()">+ Add Grade</button>
+      </div>
+      <h2>Top Performers</h2>
+      <table id="top-table"><thead><tr><th>Student</th><th>Average</th><th>Letter</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <!-- Students -->
+    <section id="view-students" class="view hidden">
+      <div class="row between">
+        <h1>Students</h1>
+        <button onclick="openStudentModal()">+ Add Student</button>
+      </div>
+      <div class="row">
+        <input id="student-search" placeholder="Search students..." />
+      </div>
+      <table id="students-table">
+        <thead><tr><th>Code</th><th>Name</th><th>Email</th><th>Class</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Courses -->
+    <section id="view-courses" class="view hidden">
+      <div class="row between">
+        <h1>Courses</h1>
+        <button onclick="openCourseModal()">+ Add Course</button>
+      </div>
+      <table id="courses-table">
+        <thead><tr><th>Code</th><th>Name</th><th>Credits</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Grades -->
+    <section id="view-grades" class="view hidden">
+      <div class="row between">
+        <h1>Grades</h1>
+        <button onclick="openGradeModal()">+ Add Grade</button>
+      </div>
+      <div class="row filters">
+        <select id="filter-student"><option value="">All students</option></select>
+        <select id="filter-course"><option value="">All courses</option></select>
+      </div>
+      <table id="grades-table">
+        <thead><tr><th>Student</th><th>Course</th><th>Assessment</th><th>Score</th><th>Weight</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Report -->
+    <section id="view-report" class="view hidden">
+      <h1>Student Report</h1>
+      <div class="row">
+        <select id="report-student"><option value="">Select student</option></select>
+        <button onclick="loadReport()">Load Report</button>
+      </div>
+      <div id="report-area"></div>
+    </section>
+  </main>
+
+  <!-- Modals -->
+  <div id="modal-backdrop" class="backdrop hidden" onclick="closeModal()"></div>
+  <div id="modal" class="modal hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
